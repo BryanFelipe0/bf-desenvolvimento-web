@@ -1,4 +1,4 @@
-import{r as vS,g as _S,R as on,a as _T,b as st,j as Yt}from"./index-BzqJ4hvC.js";/*! © 2026 B&F Desenvolvimento Web — bfwebcomerce.com.br
+import{r as vS,g as _S,R as on,a as _T,b as st,j as Yt}from"./index-DQmHD_XA.js";/*! © 2026 B&F Desenvolvimento Web — bfwebcomerce.com.br
  * Todos os direitos reservados. É proibida a cópia, reprodução, modificação
  * ou redistribuição deste código, total ou parcial, sem autorização por escrito. *//**
  * @license
