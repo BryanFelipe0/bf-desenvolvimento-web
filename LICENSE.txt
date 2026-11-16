@@ -1,0 +1,10 @@
+Copyright (c) 2026 B&F Desenvolvimento Web (bfwebcomerce.com.br)
+Todos os direitos reservados.
+
+Este repositório contém a versão publicada do site da B&F Desenvolvimento Web.
+Nenhuma licença é concedida. É proibido copiar, reproduzir, modificar, distribuir,
+publicar ou utilizar este código, design, textos, imagens ou elementos visuais,
+no todo ou em parte, sem autorização prévia e por escrito da B&F.
+
+All rights reserved. No license is granted to copy, modify or redistribute
+any part of this code or its assets without prior written permission.
