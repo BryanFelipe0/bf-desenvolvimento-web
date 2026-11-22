@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bfwebcomerce.com.br/sitemap.xml
