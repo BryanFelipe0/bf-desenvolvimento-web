@@ -1,0 +1,72 @@
+/* Tema "Arraial ensolarado": inspirado na referência do cliente.
+   Paredes brancas, madeira caramelo, palha e a água azul-turquesa da piscina. */
+:root {
+  --noite: #fdfbf7;      /* fundo: branco quente de parede caiada */
+  --noite-2: #f5efe5;    /* faixas: areia clara */
+  --noite-3: #ece2d2;    /* palha */
+  --areia: #2a1f15;      /* texto: madeira escura */
+  --areia-2: #6e5b46;    /* texto secundário */
+  --ouro: #b8722e;       /* madeira caramelo (detalhes e títulos) */
+  --ouro-2: #9a5c22;
+  --turquesa: #17a2a8;   /* água da piscina (botões) */
+  --turquesa-2: #0f8389;
+  --linha: rgba(42, 31, 21, 0.12);
+  color-scheme: light;
+}
+
+/* botões principais na cor da piscina */
+.btn-ouro { background: linear-gradient(135deg, var(--turquesa) 0%, var(--turquesa-2) 100%); color: #fff; box-shadow: 0 8px 24px -8px rgba(15, 131, 137, .55); }
+.btn-ouro:hover { box-shadow: 0 12px 28px -8px rgba(15, 131, 137, .7); }
+
+/* aviso no topo */
+.aviso { background: var(--noite-3); color: var(--areia-2); }
+.aviso b { color: var(--ouro-2); }
+
+/* menu fixo claro depois de rolar */
+.topo.fixo { background: rgba(253, 251, 247, .92); border-bottom-color: var(--linha); }
+.topo.fixo .marca { color: var(--areia); }
+.topo.fixo .menu a { color: var(--areia-2); }
+.topo.fixo .menu a:hover { color: var(--ouro); }
+.topo.fixo .btn-claro { color: var(--areia); border-color: var(--linha); background: #fff; }
+
+/* abertura: véu mais leve, foto ensolarada */
+.hero-veu { background: linear-gradient(180deg, rgba(20, 40, 45, .35) 0%, rgba(20, 40, 45, 0) 30%, rgba(20, 40, 45, .35) 52%, rgba(14, 30, 32, .88) 100%); }
+.hero-titulo, .hero-slogan { text-shadow: 0 2px 18px rgba(0, 0, 0, .35); }
+.reserva { background: rgba(255, 255, 255, .94); border-color: rgba(255, 255, 255, .8); }
+.reserva .campo { border-right-color: var(--linha); }
+.reserva .campo label, .reserva .campo .rotulo { color: var(--areia-2); }
+.reserva .campo input, .reserva .campo select { color: var(--areia); }
+.reserva .campo select option { background: #fff; }
+.reserva .campo-noites strong { color: var(--turquesa-2); }
+.campo:focus-within { background: var(--noite-2); }
+
+/* números e destaques */
+.numeros dt { color: var(--ouro); }
+
+/* suítes */
+.suite.aberta .suite-mais { background: var(--turquesa); border-color: var(--turquesa); color: #fff; }
+.chips span { background: #fff; }
+
+/* galeria: fundo azul-piscina profundo para as fotos brilharem */
+.galeria { background: #0e3f44; }
+.galeria-fundo::after { background: radial-gradient(circle at center, rgba(14, 63, 68, .25) 0%, rgba(14, 63, 68, .92) 100%); }
+.galeria .galeria-titulo { color: #fff; }
+.galeria .galeria-titulo em { color: #7fd8d9; }
+.slide { background: #0e3f44; }
+.slide-traco { background: #7fd8d9; box-shadow: 0 0 8px rgba(127, 216, 217, .6); }
+.pontos button.ativo { background: #7fd8d9; box-shadow: 0 0 10px rgba(127, 216, 217, .6); }
+.seta:hover { background: #7fd8d9; color: #0e3f44; }
+
+/* tabela de reserva direta */
+.tabela { background: #fff; }
+.linha .sim { color: var(--turquesa-2); }
+
+/* região: faixa de palha */
+.regiao-conteudo { background: var(--noite-2); }
+.lista-regiao span { color: var(--turquesa-2); }
+
+/* contato */
+.contato { background: radial-gradient(ellipse at 50% 100%, rgba(23, 162, 168, .14), transparent 60%); }
+.dados dt { color: var(--turquesa-2); }
+
+.rodape { background: var(--noite-3); }
