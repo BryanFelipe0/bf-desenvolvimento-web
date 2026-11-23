@@ -20,7 +20,7 @@
     ? `<video src="${esc(P.heroVideo)}" autoplay muted loop playsinline preload="metadata" poster="${esc(largura(P.heroFoto, 1200))}"></video>`
     : `<img src="${esc(largura(P.heroFoto, 1200))}" srcset="${srcset(P.heroFoto, [800, 1200, 1800, 2400])}" sizes="100vw" alt="Vista da ${esc(P.nomeCompleto)}" fetchpriority="high" decoding="async">`;
   const titulo = $(".hero-titulo");
-  titulo.innerHTML = [...P.nome].map((c) => (c === " " ? " " : `<span class="letra">${esc(c)}</span>`)).join("");
+  titulo.innerHTML = P.nome.split(" ").map((p) => `<span class="palavra" style="display:inline-block;white-space:nowrap">${[...p].map((c) => `<span class="letra">${esc(c)}</span>`).join("")}</span>`).join(" ");
 
   /* ---------- reserva ---------- */
   const hoje = new Date();
