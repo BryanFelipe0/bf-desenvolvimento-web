@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Marcenaria</title>
+  <meta name="description" content="">
+  <!-- Prévia: fica fora do Google. Quando virar o site oficial do cliente, apague a linha abaixo. -->
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0D0A08">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Jost:wght@300;400;500;600&display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preload" as="image" href="midia/quadros/001.webp">
+  <script src="config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+
+<div class="aviso">Prévia de demonstração feita para <b data-bind="nomeCompleto"></b>. Não é o site oficial.</div>
+
+<header class="topo" id="topo">
+  <a class="marca" href="#inicio" aria-label="Início">
+    <span class="marca-sinal" aria-hidden="true"></span>
+    <span class="marca-nome" data-bind="nome"></span>
+  </a>
+  <nav class="menu" aria-label="Seções">
+    <a href="#projetos">Projetos</a>
+    <a href="#processo">Como funciona</a>
+    <a href="#acabamentos">Acabamentos</a>
+    <a href="#orcamento">Orçamento</a>
+  </nav>
+  <a class="btn btn-linha" data-wa="Olá! Vim pelo site e quero agendar uma visita para medir o meu ambiente." target="_blank" rel="noopener">Agendar visita</a>
+</header>
+
+<main>
+  <!-- TOPO: a câmera anda pela cozinha conforme a rolagem -->
+  <section class="filme" id="inicio" aria-label="Passeio pela cozinha">
+    <div class="filme-palco">
+      <canvas class="filme-tela" id="tela" aria-hidden="true"></canvas>
+      <div class="filme-sombra" aria-hidden="true"></div>
+
+      <div class="filme-abertura" id="abertura">
+        <h1>Cada centímetro da sua casa, pensado <em>sob medida</em>.</h1>
+        <p>Móveis planejados em <span data-bind="cidade"></span>, do projeto 3D à montagem, com garantia de <span data-bind="garantiaTxt"></span>.</p>
+        <div class="botoes">
+          <a class="btn btn-cheio" href="#orcamento">Simular meu orçamento</a>
+          <a class="btn btn-linha" data-wa="Olá! Quero agendar a visita gratuita para medir o meu ambiente." target="_blank" rel="noopener">Agendar visita grátis</a>
+        </div>
+      </div>
+
+      <div class="filme-etapas" id="etapas" aria-live="polite"></div>
+
+      <div class="filme-progresso" aria-hidden="true">
+        <span class="filme-contador" id="contador">01 / 04</span>
+        <span class="filme-linha"><span id="progresso"></span></span>
+      </div>
+      <p class="filme-dica" id="dica" aria-hidden="true">Role para entrar</p>
+    </div>
+  </section>
+
+  <!-- NÚMEROS -->
+  <section class="numeros" aria-label="A marcenaria em números">
+    <div class="numero"><b data-bind="anos"></b><span>anos fazendo móveis em <span data-bind="cidade"></span></span></div>
+    <div class="numero"><b data-bind="projetosTxt"></b><span>ambientes entregues</span></div>
+    <div class="numero"><b data-bind="notaGoogle"></b><span>no Google, <span data-bind="avaliacoes"></span> avaliações</span></div>
+    <div class="numero"><b data-bind="garantiaTxt"></b><span>de garantia por escrito</span></div>
+  </section>
+
+  <!-- DO PROJETO AO PRONTO -->
+  <section class="comparar" aria-labelledby="compararTitulo">
+    <div class="comparar-texto">
+      <h2 id="compararTitulo">O que você aprova no 3D é o que chega na sua casa.</h2>
+      <p>Arraste a linha. À esquerda, o projeto que o cliente aprovou. À direita, a cozinha montada.</p>
+    </div>
+    <div class="comparar-quadro" id="comparar">
+      <img class="comparar-pronto" id="cmpPronto" alt="Cozinha montada, com armários de madeira e ilha">
+      <div class="comparar-projeto" id="cmpProjeto"><img id="cmpRender" alt="Projeto 3D da mesma cozinha"></div>
+      <span class="comparar-rotulo esq">Projeto 3D</span>
+      <span class="comparar-rotulo dir">Entregue</span>
+      <span class="comparar-alca" id="cmpAlca" aria-hidden="true"></span>
+      <input class="comparar-range" id="cmpRange" type="range" min="0" max="100" value="50" aria-label="Comparar projeto 3D com o ambiente pronto">
+    </div>
+  </section>
+
+  <!-- PORTFÓLIO: zoom no scroll -->
+  <section class="galeria" id="projetos" aria-labelledby="projTitulo">
+    <div class="galeria-palco">
+      <h2 id="projTitulo" class="galeria-titulo">Projetos entregues</h2>
+      <div class="galeria-fotos" id="galeria"></div>
+      <p class="galeria-legenda" id="galeriaLegenda"></p>
+    </div>
+  </section>
+
+  <!-- FRASE -->
+  <section class="frase" aria-label="Nosso compromisso">
+    <p id="frase">Nada aqui sai de catálogo. Cada porta é desenhada para a sua parede, cortada na nossa fábrica e montada por quem fez o projeto.</p>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section class="processo" id="processo" aria-labelledby="procTitulo">
+    <div class="processo-fixo">
+      <div class="processo-fotos" id="procFotos"></div>
+    </div>
+    <div class="processo-passos">
+      <h2 id="procTitulo">Como funciona</h2>
+      <ol id="passos"></ol>
+    </div>
+  </section>
+
+  <!-- ACABAMENTOS -->
+  <section class="acabamentos" id="acabamentos" aria-labelledby="acabTitulo">
+    <div class="acab-amostra" id="acabAmostra" aria-hidden="true"></div>
+    <div class="acab-texto">
+      <h2 id="acabTitulo">Acabamentos</h2>
+      <p>Toque para ver de perto. Levamos as amostras físicas na visita.</p>
+      <div class="acab-lista" id="acabLista" role="radiogroup" aria-label="Acabamentos"></div>
+      <p class="acab-escolhido" id="acabEscolhido"></p>
+    </div>
+  </section>
+
+  <!-- SIMULADOR -->
+  <section class="simulador" id="orcamento" aria-labelledby="simTitulo">
+    <div class="sim-cabeca">
+      <h2 id="simTitulo">Quanto fica o seu ambiente?</h2>
+      <p>Uma estimativa em 30 segundos. O preço fechado sai no projeto 3D, depois da visita.</p>
+    </div>
+    <div class="sim-grade">
+      <form class="sim-form" id="simForm" onsubmit="return false">
+        <fieldset>
+          <legend>Ambiente</legend>
+          <div class="sim-ambientes" id="simAmbientes"></div>
+        </fieldset>
+        <fieldset>
+          <legend>Tamanho <span class="sim-medida" id="simMedidaTxt"></span></legend>
+          <input type="range" id="simMetros" step="0.5" aria-describedby="simMetrosAjuda">
+          <p class="sim-ajuda" id="simMetrosAjuda">Some o comprimento das paredes que vão receber móveis, em metros.</p>
+        </fieldset>
+        <fieldset>
+          <legend>Padrão</legend>
+          <div class="sim-padroes" id="simPadroes"></div>
+        </fieldset>
+        <fieldset>
+          <legend>Extras</legend>
+          <div class="sim-extras" id="simExtras"></div>
+        </fieldset>
+      </form>
+
+      <aside class="sim-resultado" aria-live="polite">
+        <p class="sim-ambiente" id="simResumo"></p>
+        <p class="sim-faixa"><span>de</span> <b id="simMin"></b> <span>a</span> <b id="simMax"></b></p>
+        <p class="sim-parcela" id="simParcela"></p>
+        <ul class="sim-itens" id="simItens"></ul>
+        <a class="btn btn-cheio btn-largo" id="simEnviar" target="_blank" rel="noopener">Receber o projeto 3D grátis</a>
+        <p class="sim-nota">Você manda esse resumo pelo WhatsApp e agendamos a visita para medir.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- DEPOIMENTOS -->
+  <section class="depoimentos" aria-labelledby="depTitulo">
+    <h2 id="depTitulo">Quem já mora com um móvel nosso</h2>
+    <div class="dep-lista" id="depoimentos"></div>
+  </section>
+
+  <!-- DÚVIDAS -->
+  <section class="duvidas" aria-labelledby="duvTitulo">
+    <h2 id="duvTitulo">Dúvidas</h2>
+    <div id="listaDuvidas"></div>
+  </section>
+
+  <!-- CHAMADA FINAL -->
+  <section class="final">
+    <h2>Vamos desenhar o seu ambiente?</h2>
+    <p>A visita para medir e o projeto 3D são gratuitos.</p>
+    <a class="btn btn-cheio" data-wa="Olá! Quero agendar a visita gratuita para medir o meu ambiente." target="_blank" rel="noopener">Agendar visita pelo WhatsApp</a>
+  </section>
+</main>
+
+<footer class="rodape">
+  <div>
+    <p class="rodape-marca" data-bind="nomeCompleto"></p>
+    <p data-bind="endereco"></p>
+    <p data-bind="horario"></p>
+  </div>
+  <div class="rodape-links">
+    <a data-wa="Olá! Vim pelo site." target="_blank" rel="noopener">WhatsApp <span data-bind="whatsappTexto"></span></a>
+    <a id="linkInsta" target="_blank" rel="noopener" data-bind="instagram"></a>
+    <a id="linkMapa" target="_blank" rel="noopener">Ver no mapa</a>
+  </div>
+  <p class="creditos">Vídeo: Pexels · Fotos: Unsplash</p>
+</footer>
+
+</body>
+</html>
