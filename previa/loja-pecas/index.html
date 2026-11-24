@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Loja de peças</title>
+  <meta name="description" content="">
+  <!-- Prévia: fica fora do Google. Quando virar o site oficial do cliente, apague a linha abaixo. -->
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#07060C">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <script src="config.js"></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+
+<div class="aviso">Prévia de demonstração feita para <b data-bind="nome"></b>. Não é o site oficial.</div>
+
+<header class="topo">
+  <a class="marca" href="#inicio"><span class="marca-chip" aria-hidden="true"></span><span data-bind="nome"></span></a>
+  <nav class="menu" aria-label="Seções">
+    <a href="#pecas">Peças</a>
+    <a href="#montar">Montar PC</a>
+    <a href="#prontos">PCs prontos</a>
+    <a href="#assistencia">Assistência</a>
+  </nav>
+  <a class="btn btn-linha" data-wa="Olá! Vim pelo site e queria tirar uma dúvida." target="_blank" rel="noopener">WhatsApp</a>
+</header>
+
+<main>
+  <!-- HERO: o PC em destaque, com as peças apontadas na foto -->
+  <section class="hero" id="inicio">
+    <div class="palco">
+      <img class="palco-foto" id="heroFoto" alt="PC gamer montado com water cooler e fans iluminados em azul e roxo" fetchpriority="high">
+      <div class="pontos" id="pontos" aria-hidden="true"></div>
+      <div class="hero-texto">
+        <h1>PC gamer montado e testado em <span data-bind="cidade"></span>.</h1>
+        <p class="hero-pc"><span data-bind="destaqueNome"></span>, a partir de</p>
+        <p class="hero-preco"><b id="heroPreco"></b><span id="heroParcela"></span></p>
+        <div class="hero-botoes">
+          <a class="btn btn-cheio" id="heroQuero" target="_blank" rel="noopener">Quero esse PC</a>
+          <a class="btn btn-linha" href="#montar" id="heroMontar">Montar o meu</a>
+        </div>
+      </div>
+    </div>
+    <ul class="ficha" id="ficha" aria-label="Peças do PC em destaque"></ul>
+  </section>
+
+  <!-- CATEGORIAS -->
+  <section class="categorias" aria-label="Categorias">
+    <div class="trilho" id="categorias"></div>
+  </section>
+
+  <!-- PEÇAS -->
+  <section class="pecas" id="pecas" aria-labelledby="pecasTitulo">
+    <div class="secao-cabeca">
+      <h2 id="pecasTitulo">Peças em estoque</h2>
+      <p>Novas, com nota fiscal e garantia. Peça pelo WhatsApp e retire na loja ou receba em casa.</p>
+    </div>
+    <div class="filtros" id="filtros" role="tablist" aria-label="Categorias de peças"></div>
+    <div class="vitrine" id="vitrine"></div>
+  </section>
+
+  <!-- MONTADOR -->
+  <section class="montador" id="montar" aria-labelledby="montarTitulo">
+    <div class="montador-cabeca">
+      <h2 id="montarTitulo">Monte o seu PC</h2>
+      <p>Escolha uma peça em cada etapa. Se alguma não encaixar com o que você já escolheu, o site avisa na hora.</p>
+    </div>
+
+    <div class="montador-grade">
+      <ol class="etapas" id="etapas"></ol>
+
+      <aside class="resumo" id="resumo" aria-label="Resumo do orçamento">
+        <svg class="pc" id="esquema" viewBox="0 0 400 470" role="img" aria-label="Desenho do PC com as peças escolhidas encaixadas">
+          <defs>
+            <symbol id="ventoinha" viewBox="-30 -30 60 60">
+              <circle r="28" fill="#0B0914" stroke="#2E2A3A" stroke-width="2"/>
+              <circle class="anel" r="25" fill="none" stroke="currentColor" stroke-width="2.5"/>
+              <g class="helice" fill="#262233" stroke="#3A3548" stroke-width=".8">
+                <path d="M0-6C6-20 18-20 20-12 14-8 6-6 0-6z"/>
+                <path d="M0-6C6-20 18-20 20-12 14-8 6-6 0-6z" transform="rotate(72)"/>
+                <path d="M0-6C6-20 18-20 20-12 14-8 6-6 0-6z" transform="rotate(144)"/>
+                <path d="M0-6C6-20 18-20 20-12 14-8 6-6 0-6z" transform="rotate(216)"/>
+                <path d="M0-6C6-20 18-20 20-12 14-8 6-6 0-6z" transform="rotate(288)"/>
+              </g>
+              <circle r="7" fill="#1A1724" stroke="currentColor" stroke-width="1.5"/>
+            </symbol>
+            <symbol id="ventoinha-parada" viewBox="-30 -30 60 60">
+              <circle r="28" fill="#0B0914" stroke="#2E2A3A" stroke-width="2"/>
+              <circle r="25" fill="none" stroke="currentColor" stroke-width="2.5"/>
+              <g fill="#1E1B28" stroke="#2E2A3A" stroke-width=".8">
+                <path d="M0-6C6-20 18-20 20-12 14-8 6-6 0-6z"/>
+                <path d="M0-6C6-20 18-20 20-12 14-8 6-6 0-6z" transform="rotate(72)"/>
+                <path d="M0-6C6-20 18-20 20-12 14-8 6-6 0-6z" transform="rotate(144)"/>
+                <path d="M0-6C6-20 18-20 20-12 14-8 6-6 0-6z" transform="rotate(216)"/>
+                <path d="M0-6C6-20 18-20 20-12 14-8 6-6 0-6z" transform="rotate(288)"/>
+              </g>
+              <circle r="7" fill="#1A1724" stroke="currentColor" stroke-width="1.5"/>
+            </symbol>
+            <linearGradient id="gMetal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3B3647"/><stop offset=".5" stop-color="#211E2A"/><stop offset="1" stop-color="#2E2A38"/></linearGradient>
+            <linearGradient id="gVidro" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".09"/><stop offset=".35" stop-color="#fff" stop-opacity="0"/><stop offset=".62" stop-color="#fff" stop-opacity="0"/><stop offset=".7" stop-color="#fff" stop-opacity=".05"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+            <linearGradient id="gRgb" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8B5CF6"/><stop offset="1" stop-color="#4CD3FF"/></linearGradient>
+            <linearGradient id="gGpu" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#34303F"/><stop offset="1" stop-color="#1B1824"/></linearGradient>
+            <radialGradient id="gLuz" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#8B5CF6" stop-opacity=".45"/><stop offset="1" stop-color="#8B5CF6" stop-opacity="0"/></radialGradient>
+            <pattern id="pTrilhas" width="16" height="16" patternUnits="userSpaceOnUse"><path d="M0 8h6l3-3h7M8 16v-4l3-3" fill="none" stroke="#221E2E" stroke-width="1"/></pattern>
+          </defs>
+
+          <!-- gabinete (sempre aparece; fica "vivo" quando escolhido) -->
+          <g class="gab" data-slot="gabinete">
+            <rect x="8" y="8" width="384" height="454" rx="14" fill="url(#gMetal)"/>
+            <rect x="22" y="22" width="356" height="426" rx="6" fill="#0B0914"/>
+            <rect class="gab-luz" x="22" y="22" width="356" height="426" rx="6" fill="url(#gLuz)"/>
+            <rect x="34" y="356" width="292" height="80" rx="4" fill="#15121D" stroke="#2A2633"/>
+            <g class="gab-fans">
+              <use href="#ventoinha-parada" x="330" y="40" width="44" height="44"/>
+              <use href="#ventoinha-parada" x="330" y="110" width="44" height="44"/>
+              <use href="#ventoinha-parada" x="330" y="180" width="44" height="44"/>
+              <use href="#ventoinha-parada" x="330" y="250" width="44" height="44"/>
+            </g>
+            <rect class="gab-fita" x="34" y="353" width="292" height="3" rx="1.5" fill="url(#gRgb)"/>
+          </g>
+
+          <!-- vagas vazias (contorno tracejado onde cada peça vai) -->
+          <g class="vagas" fill="none" stroke="#3A3350" stroke-width="1.4" stroke-dasharray="5 5">
+            <rect data-vaga="placa" x="52" y="40" width="250" height="296" rx="5"/>
+            <rect data-vaga="cpu" x="140" y="104" width="62" height="62" rx="4"/>
+            <rect data-vaga="ram" x="236" y="80" width="46" height="120" rx="3"/>
+            <rect data-vaga="ssd" x="132" y="196" width="88" height="16" rx="3"/>
+            <rect data-vaga="gpu" x="58" y="232" width="262" height="58" rx="6"/>
+            <rect data-vaga="fonte" x="44" y="368" width="140" height="58" rx="5"/>
+            <circle data-vaga="cooler" cx="171" cy="135" r="46"/>
+          </g>
+
+          <!-- placa-mãe -->
+          <g class="peca" data-slot="placa" style="--dx:0px;--dy:-24px">
+            <g class="corpo">
+              <rect x="52" y="40" width="250" height="296" rx="5" fill="#16131F" stroke="#2E2A3A"/>
+              <rect x="52" y="40" width="250" height="296" rx="5" fill="url(#pTrilhas)"/>
+              <rect x="56" y="46" width="34" height="96" rx="3" fill="#2C2838"/>
+              <rect x="96" y="46" width="120" height="22" rx="3" fill="#2C2838"/>
+              <rect x="96" y="46" width="120" height="3" fill="url(#gRgb)" opacity=".7"/>
+              <rect x="140" y="104" width="62" height="62" rx="3" fill="#0E0C14" stroke="#3A3548"/>
+              <g fill="#0E0C14" stroke="#3A3548"><rect x="238" y="82" width="8" height="116" rx="2"/><rect x="250" y="82" width="8" height="116" rx="2"/><rect x="262" y="82" width="8" height="116" rx="2"/><rect x="274" y="82" width="8" height="116" rx="2"/></g>
+              <rect x="66" y="262" width="210" height="6" rx="2" fill="#0E0C14" stroke="#3A3548"/>
+              <rect x="66" y="304" width="210" height="6" rx="2" fill="#0E0C14" stroke="#3A3548"/>
+              <rect x="226" y="300" width="56" height="30" rx="4" fill="#2C2838"/>
+              <text x="254" y="319" class="rotulo">B650</text>
+            </g>
+          </g>
+
+          <!-- processador -->
+          <g class="peca" data-slot="cpu" style="--dx:0px;--dy:-70px">
+            <g class="corpo">
+              <rect x="146" y="110" width="50" height="50" rx="3" fill="#B7B2C4"/>
+              <rect x="150" y="114" width="42" height="42" rx="2" fill="#D6D2E0"/>
+              <text x="171" y="139" class="rotulo escuro" id="cpuNome">RYZEN</text>
+            </g>
+          </g>
+
+          <!-- SSD M.2 -->
+          <g class="peca" data-slot="ssd" style="--dx:60px;--dy:0px">
+            <g class="corpo">
+              <rect x="132" y="196" width="88" height="16" rx="2" fill="#1E1B28" stroke="#4A4458"/>
+              <rect x="136" y="199" width="20" height="10" fill="#3A3548"/><rect x="160" y="199" width="16" height="10" fill="#3A3548"/>
+              <rect x="180" y="199" width="34" height="10" rx="1" fill="#8B5CF6" opacity=".55"/>
+            </g>
+          </g>
+
+          <!-- memórias -->
+          <g class="peca" data-slot="ram" style="--dx:0px;--dy:-80px">
+            <g class="corpo">
+              <g fill="#211E2A" stroke="#4A4458"><rect x="237" y="80" width="10" height="120" rx="2"/><rect x="249" y="80" width="10" height="120" rx="2"/><rect x="261" y="80" width="10" height="120" rx="2"/><rect x="273" y="80" width="10" height="120" rx="2"/></g>
+              <g class="rgb"><rect x="237" y="80" width="10" height="9" rx="2" fill="url(#gRgb)"/><rect x="249" y="80" width="10" height="9" rx="2" fill="url(#gRgb)"/><rect x="261" y="80" width="10" height="9" rx="2" fill="url(#gRgb)"/><rect x="273" y="80" width="10" height="9" rx="2" fill="url(#gRgb)"/></g>
+            </g>
+          </g>
+
+          <!-- cooler: 3 tipos, o JS mostra o que foi escolhido -->
+          <g class="peca" data-slot="cooler" style="--dx:0px;--dy:-90px">
+            <g class="corpo">
+              <g data-variante="box">
+                <circle cx="171" cy="135" r="32" fill="#1A1724" stroke="#3A3548"/>
+                <use href="#ventoinha" x="143" y="107" width="56" height="56" color="#5A5370"/>
+              </g>
+              <g data-variante="torre">
+                <rect x="126" y="92" width="92" height="88" rx="4" fill="#24212E" stroke="#4A4458"/>
+                <g stroke="#3A3548" stroke-width="2"><path d="M132 100h80M132 108h80M132 116h80M132 124h80M132 132h80M132 140h80M132 148h80M132 156h80M132 164h80M132 172h80"/></g>
+                <use href="#ventoinha" x="116" y="104" width="64" height="64" color="#4CD3FF"/>
+              </g>
+              <g data-variante="agua">
+                <rect x="60" y="24" width="250" height="16" rx="4" fill="#211E2A" stroke="#4A4458"/>
+                <use href="#ventoinha" x="78" y="2" width="40" height="40" color="#8B5CF6" class="rad-fan"/>
+                <use href="#ventoinha" x="165" y="2" width="40" height="40" color="#8B5CF6" class="rad-fan"/>
+                <use href="#ventoinha" x="252" y="2" width="40" height="40" color="#8B5CF6" class="rad-fan"/>
+                <path d="M160 108C150 70 120 60 110 40M184 108C196 70 220 60 236 40" fill="none" stroke="#2E2A3A" stroke-width="7" stroke-linecap="round"/>
+                <circle cx="171" cy="135" r="28" fill="#15121D" stroke="#4A4458" stroke-width="2"/>
+                <circle class="bomba" cx="171" cy="135" r="20" fill="none" stroke="url(#gRgb)" stroke-width="4"/>
+                <circle cx="171" cy="135" r="9" fill="#8B5CF6" opacity=".8"/>
+              </g>
+            </g>
+          </g>
+
+          <!-- placa de vídeo -->
+          <g class="peca" data-slot="gpu" style="--dx:-110px;--dy:0px">
+            <g class="corpo">
+              <rect x="58" y="232" width="262" height="58" rx="6" fill="url(#gGpu)" stroke="#4A4458"/>
+              <rect x="58" y="232" width="262" height="4" rx="2" fill="url(#gRgb)"/>
+              <use href="#ventoinha" x="78" y="240" width="44" height="44" color="#4CD3FF"/>
+              <use href="#ventoinha" x="146" y="240" width="44" height="44" color="#4CD3FF"/>
+              <use href="#ventoinha" x="214" y="240" width="44" height="44" color="#4CD3FF"/>
+              <text x="289" y="265" class="rotulo" id="gpuNome">RTX</text>
+            </g>
+          </g>
+
+          <!-- fonte -->
+          <g class="peca" data-slot="fonte" style="--dx:-120px;--dy:0px">
+            <g class="corpo">
+              <rect x="44" y="368" width="140" height="58" rx="5" fill="#1E1B28" stroke="#4A4458"/>
+              <g stroke="#2E2A3A"><path d="M56 380h56M56 388h56M56 396h56M56 404h56M56 412h56"/></g>
+              <text x="150" y="402" class="rotulo grande" id="fonteW">650W</text>
+            </g>
+          </g>
+
+          <!-- vidro lateral por cima de tudo -->
+          <rect x="22" y="22" width="356" height="426" rx="6" fill="url(#gVidro)" pointer-events="none"/>
+        </svg>
+
+        <div class="consumo">
+          <div class="consumo-linha"><span>Consumo estimado</span><b id="consumoW">0 W</b></div>
+          <div class="barra" aria-hidden="true"><span id="consumoBarra"></span></div>
+          <p class="consumo-nota" id="consumoNota">Escolha a fonte para ver se ela aguenta.</p>
+        </div>
+
+        <ul class="avisos" id="avisos" aria-live="polite"></ul>
+
+        <div class="total">
+          <span class="total-rotulo">Total</span>
+          <b class="total-valor" id="total">R$ 0</b>
+          <span class="total-parcela" id="parcela"></span>
+          <span class="total-pix" id="pix"></span>
+        </div>
+
+        <a class="btn btn-cheio btn-largo" id="enviar" target="_blank" rel="noopener">Enviar orçamento no WhatsApp</a>
+        <button class="btn-texto" id="copiarLink" type="button">Copiar link deste orçamento</button>
+        <p class="resumo-nota">Nosso técnico confere tudo e responde com o preço final e o prazo.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- BARRA FIXA NO CELULAR -->
+  <div class="barra-celular" id="barraCelular">
+    <div><span id="barraEtapas">0 de 8 peças</span><b id="barraTotal">R$ 0</b></div>
+    <a class="btn btn-cheio" href="#resumo">Ver orçamento</a>
+  </div>
+
+  <!-- PCs PRONTOS -->
+  <section class="prontos" id="prontos" aria-labelledby="prontosTitulo">
+    <div class="secao-cabeca">
+      <h2 id="prontosTitulo">PCs prontos</h2>
+      <p>Configurações que a gente mais monta. Dá para levar como está ou trocar qualquer peça.</p>
+    </div>
+    <div class="planos" id="planos"></div>
+  </section>
+
+  <!-- ASSISTÊNCIA -->
+  <section class="assistencia" id="assistencia" aria-labelledby="assistTitulo">
+    <div class="secao-cabeca">
+      <h2 id="assistTitulo">Assistência técnica</h2>
+      <p>Traga seu PC ou notebook. A gente avalia na hora e só faz o serviço depois que você aprovar o preço.</p>
+    </div>
+    <div class="servicos" id="servicos"></div>
+  </section>
+
+  <!-- PROVA + DÚVIDAS -->
+  <section class="duvidas" id="duvidas" aria-labelledby="duvTitulo">
+    <div class="provas">
+      <div class="prova"><b data-bind="notaGoogle"></b><span>no Google, <span data-bind="avaliacoes"></span> avaliações</span></div>
+      <div class="prova"><b data-bind="parcelas"></b><span>sem juros no cartão</span></div>
+      <div class="prova"><b data-bind="pix"></b><span>de desconto no Pix</span></div>
+      <div class="prova"><b>Grátis</b><span>montagem comprando o kit</span></div>
+    </div>
+    <div class="duvidas-lista">
+      <h2 id="duvTitulo">Dúvidas</h2>
+      <div id="listaDuvidas"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <div>
+    <p class="rodape-marca" data-bind="nome"></p>
+    <p data-bind="endereco"></p>
+    <p data-bind="horario"></p>
+  </div>
+  <div class="rodape-links">
+    <a data-wa="Olá! Vim pelo site." target="_blank" rel="noopener">WhatsApp <span data-bind="whatsappTexto"></span></a>
+    <a id="linkInsta" target="_blank" rel="noopener" data-bind="instagram"></a>
+    <a id="linkMapa" target="_blank" rel="noopener">Ver no mapa</a>
+  </div>
+  <p class="creditos">Fotos: Unsplash</p>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+</body>
+</html>
