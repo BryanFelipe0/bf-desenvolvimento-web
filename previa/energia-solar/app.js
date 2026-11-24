@@ -36,7 +36,8 @@
   const H = E.hero, tela = $("#tela"), ctx = tela.getContext("2d");
   // tela em pé (celular) usa quadros cortados em pé, para não esticar a imagem
   const emPe = innerWidth / innerHeight < 0.8;
-  const nums = []; for (let i = 1; i <= H.total; i += H.passo || 1) nums.push(i);
+  const passo = emPe ? H.passoCel || 2 : H.passoPc || 1;
+  const nums = []; for (let i = 1; i <= H.total; i += passo) nums.push(i);
   const pasta = emPe ? H.pastaCel : H.pastaPc;
   const quadros = nums.map(() => null);
   const carregar = (k) => new Promise((ok) => {
@@ -75,10 +76,12 @@
   };
   // progresso suavizado: a cada quadro de tela (60 por segundo) o filme anda uma fração até onde o scroll está.
   // Isso deixa o movimento contínuo mesmo quando a rolagem vem em "pulos" (roda do mouse, dedo no celular).
-  let pSuave = progresso($("#inicio"));
+  let pSuave = progresso($("#inicio")), tAnt = performance.now();
   function desenharFilme(forcar) {
     const alvo = progresso($("#inicio"));
-    pSuave += (alvo - pSuave) * (calmo ? 1 : 0.16);
+    // suavização pelo tempo real (igual em telas de 60 Hz, 120 Hz ou 144 Hz)
+    const agora = performance.now(), dt = Math.min(agora - tAnt, 64); tAnt = agora;
+    pSuave += (alvo - pSuave) * (calmo ? 1 : 1 - Math.pow(0.84, dt / 16.67));
     if (Math.abs(alvo - pSuave) < 0.00005) pSuave = alvo;
     const p = pSuave;
     // posição "entre" dois quadros: desenha o atual e mistura o próximo por cima, na proporção certa

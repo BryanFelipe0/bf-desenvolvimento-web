@@ -24,10 +24,11 @@ window.SOLAR = {
   // ---------------- TOPO: filme preso ao scroll ----------------
   // Quadros de vários vídeos de drone emendados. "ate" = fim de cada etapa (0 a 1).
   hero: {
-    pastaPc: "midia/quadros-hd/",      // 1920×1080, para telas deitadas
+    pastaPc: "midia/quadros-hd2/",     // 1600×900, todos os 380 quadros, para telas deitadas
     pastaCel: "midia/quadros-cel-hd/", // 720×1280 cortado do centro, para celular em pé
     total: 380,
-    passo: 2,                          // usa 1 de cada 2 quadros; o site mistura um no outro para ficar liso
+    passoPc: 1,                        // computador: todos os quadros (scroll devagar fica liso)
+    passoCel: 2,                       // celular: 1 de cada 2, para gastar menos internet
     etapas: [
       { ate: 0.30, rotulo: "A casa", titulo: "O sol já bate no seu telhado todos os dias.", texto: "A diferença é que, a partir de agora, ele paga a sua conta de luz." },
       { ate: 0.46, rotulo: "O sistema", titulo: "12 placas. 7,3 kWp.", texto: "A conta desta casa caiu de R$ 980 para R$ 96 por mês." },
