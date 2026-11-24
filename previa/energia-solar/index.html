@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Energia solar</title>
+  <meta name="description" content="">
+  <!-- Prévia: fica fora do Google. Quando virar o site oficial do cliente, apague a linha abaixo. -->
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0A110D">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Figtree:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <script src="config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+
+<div class="aviso">Prévia de demonstração feita para <b data-bind="nomeCompleto"></b>. Não é o site oficial.</div>
+
+<header class="topo" id="topo">
+  <a class="marca" href="#inicio" aria-label="Início">
+    <svg class="marca-sol" viewBox="0 0 32 32" aria-hidden="true"><path d="M2 22a14 14 0 0 1 28 0"/><circle cx="16" cy="22" r="5"/></svg>
+    <span data-bind="nome"></span>
+  </a>
+  <nav class="menu" aria-label="Seções">
+    <a href="#economia">Simular economia</a>
+    <a href="#processo">Como funciona</a>
+    <a href="#obras">Obras</a>
+    <a href="#duvidas">Dúvidas</a>
+  </nav>
+  <a class="btn btn-linha" data-wa="Olá! Vim pelo site e quero saber quanto eu economizo com energia solar." target="_blank" rel="noopener">Falar no WhatsApp</a>
+</header>
+
+<main>
+  <!-- FILME: a câmera sobe pela casa, gira sobre as placas e se afasta -->
+  <section class="filme" id="inicio" aria-label="Passeio de drone por uma casa com energia solar">
+    <div class="filme-palco">
+      <canvas class="filme-tela" id="tela" aria-hidden="true"></canvas>
+      <div class="filme-sombra" aria-hidden="true"></div>
+
+      <div class="abertura" id="abertura">
+        <h1>Pare de pagar conta de luz.</h1>
+        <p>Energia solar em <span data-bind="cidade"></span> e região, com projeto, instalação e papelada da Cemig por nossa conta.</p>
+        <div class="botoes">
+          <a class="btn btn-sol" href="#economia">Simular minha economia</a>
+          <a class="btn btn-linha" data-wa="Olá! Quero mandar minha conta de luz para uma simulação de energia solar." target="_blank" rel="noopener">Mandar minha conta</a>
+        </div>
+      </div>
+
+      <div class="etapas" id="etapas" aria-live="polite"></div>
+
+      <div class="painel-sol" aria-hidden="true">
+        <svg viewBox="0 0 200 110" class="arco">
+          <path class="arco-trilho" d="M10 100 A90 90 0 0 1 190 100"/>
+          <path class="arco-feito" id="arcoFeito" d="M10 100 A90 90 0 0 1 190 100"/>
+          <circle class="arco-sol" id="arcoSol" r="7" cx="10" cy="100"/>
+        </svg>
+        <p class="painel-valor" id="painelValor">R$ 0</p>
+        <p class="painel-rotulo">de economia desta casa no primeiro ano</p>
+      </div>
+
+      <div class="filme-progresso" aria-hidden="true">
+        <span id="contador">01 / 04</span>
+        <span class="filme-linha"><span id="progresso"></span></span>
+      </div>
+      <p class="dica" id="dica" aria-hidden="true">Role devagar</p>
+    </div>
+  </section>
+
+  <!-- NÚMEROS -->
+  <section class="numeros" aria-label="A empresa em números">
+    <div><b data-bind="sistemasTxt"></b><span>sistemas instalados</span></div>
+    <div><b data-bind="anosTxt"></b><span>no mercado de <span data-bind="cidade"></span></span></div>
+    <div><b data-bind="notaGoogle"></b><span>no Google, <span data-bind="avaliacoes"></span> avaliações</span></div>
+    <div><b>25 anos</b><span>de garantia de geração</span></div>
+  </section>
+
+  <!-- SIMULADOR -->
+  <section class="economia" id="economia" aria-labelledby="ecoTitulo">
+    <div class="eco-cabeca">
+      <h2 id="ecoTitulo">Quanto você vai economizar?</h2>
+      <p>Arraste até o valor da sua última conta de luz.</p>
+    </div>
+
+    <div class="eco-grade">
+      <div class="eco-entrada">
+        <div class="eco-conta">
+          <label for="conta">Sua conta de luz hoje</label>
+          <output id="contaTxt" for="conta"></output>
+          <input type="range" id="conta" step="10">
+          <div class="eco-limites"><span id="contaMinTxt"></span><span id="contaMaxTxt"></span></div>
+        </div>
+        <div class="eco-tipos" id="tipos" role="radiogroup" aria-label="Onde vai instalar"></div>
+
+        <div class="eco-barras" aria-label="Comparação da conta antes e depois">
+          <div class="barra-linha"><span>Hoje</span><div class="barra"><i id="barraHoje"></i></div><b id="valHoje"></b></div>
+          <div class="barra-linha"><span>Com solar</span><div class="barra"><i id="barraSolar" class="solar"></i></div><b id="valSolar"></b></div>
+          <div class="barra-linha"><span>Parcela</span><div class="barra"><i id="barraParcela" class="parcela"></i></div><b id="valParcela"></b></div>
+          <p class="barra-nota" id="barraNota"></p>
+        </div>
+      </div>
+
+      <aside class="eco-resultado" aria-live="polite">
+        <p class="eco-destaque-rotulo">Você economiza por mês</p>
+        <p class="eco-destaque" id="ecoMes"></p>
+        <dl class="eco-dados">
+          <div><dt>Em 25 anos</dt><dd id="eco25"></dd></div>
+          <div><dt>Se paga em</dt><dd id="ecoPayback"></dd></div>
+          <div><dt>Placas</dt><dd id="ecoPlacas"></dd></div>
+          <div><dt>Potência</dt><dd id="ecoKwp"></dd></div>
+          <div><dt>Área no telhado</dt><dd id="ecoArea"></dd></div>
+          <div><dt>Investimento</dt><dd id="ecoInvest"></dd></div>
+        </dl>
+        <a class="btn btn-sol btn-largo" id="ecoEnviar" target="_blank" rel="noopener">Receber o projeto pelo WhatsApp</a>
+        <p class="eco-nota">Estimativa com a tarifa e o sol de <span data-bind="cidade"></span>. O valor exato sai depois da visita técnica gratuita.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA: rolagem horizontal -->
+  <section class="processo" id="processo" aria-labelledby="procTitulo">
+    <div class="processo-palco">
+      <h2 id="procTitulo">Da conta de luz ao sol pagando tudo</h2>
+      <div class="processo-trilho" id="trilho"></div>
+      <div class="processo-barra" aria-hidden="true"><span id="procBarra"></span></div>
+    </div>
+  </section>
+
+  <!-- OBRAS -->
+  <section class="obras" id="obras" aria-labelledby="obrasTitulo">
+    <h2 id="obrasTitulo">Obras recentes</h2>
+    <div class="obras-grade" id="obrasGrade"></div>
+  </section>
+
+  <!-- DEPOIMENTOS -->
+  <section class="depoimentos" aria-labelledby="depTitulo">
+    <h2 id="depTitulo">Quem já trocou a conta pelo sol</h2>
+    <div class="dep-lista" id="depoimentos"></div>
+  </section>
+
+  <!-- DÚVIDAS -->
+  <section class="duvidas" id="duvidas" aria-labelledby="duvTitulo">
+    <h2 id="duvTitulo">Dúvidas</h2>
+    <div id="listaDuvidas"></div>
+  </section>
+
+  <section class="final">
+    <h2>Manda a sua conta de luz. A gente responde com a sua economia.</h2>
+    <a class="btn btn-sol" data-wa="Olá! Quero mandar minha conta de luz para uma simulação de energia solar." target="_blank" rel="noopener">Mandar minha conta no WhatsApp</a>
+  </section>
+</main>
+
+<footer class="rodape">
+  <div>
+    <p class="rodape-marca" data-bind="nomeCompleto"></p>
+    <p data-bind="endereco"></p>
+    <p data-bind="horario"></p>
+  </div>
+  <div class="rodape-links">
+    <a data-wa="Olá! Vim pelo site." target="_blank" rel="noopener">WhatsApp <span data-bind="whatsappTexto"></span></a>
+    <a id="linkInsta" target="_blank" rel="noopener" data-bind="instagram"></a>
+    <a id="linkMapa" target="_blank" rel="noopener">Ver no mapa</a>
+  </div>
+  <p class="creditos">Vídeos: Pexels · Fotos: Unsplash</p>
+</footer>
+
+</body>
+</html>
